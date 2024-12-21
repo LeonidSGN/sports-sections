@@ -94,6 +94,10 @@ public interface ValidationConstants {
 
     String HTTP_MESSAGE_NOT_READABLE_EXCEPTION = "Http request not valid";
 
+    String THEME_SIZE_NOT_VALID = "The length of the theme must be from 3 to 130";
+
+    String THEME_SIZE_NOT_NULL = "The length of the theme must not null";
+
     private void doNothingMethod() {
 
     }

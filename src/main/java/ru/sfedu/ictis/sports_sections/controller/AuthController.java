@@ -2,6 +2,7 @@ package ru.sfedu.ictis.sports_sections.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import ru.sfedu.ictis.sports_sections.service.AuthService;
 
 @RestController
 @RequestMapping("/auth")
+@Validated
 public class AuthController {
     private final AuthService authService;
 

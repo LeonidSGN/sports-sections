@@ -26,7 +26,7 @@ public enum ErrorCodes {
 
     USER_EMAIL_NOT_NULL(8, "user email mustn't be null"),
 
-    USER_PASSWORD_NOT_VALID(9, "user password must be more than 6 symbols"),
+    USER_PASSWORD_NOT_VALID(9, "user password should be more than 6 symbols"),
 
     USER_ROLE_NOT_NULL(10, "user role mustn't be null"),
 
@@ -98,7 +98,11 @@ public enum ErrorCodes {
 
     USER_WITH_THIS_EMAIL_ALREADY_EXIST(46, ValidationConstants.USER_WITH_THIS_EMAIL_ALREADY_EXIST),
 
-    HTTP_MESSAGE_NOT_READABLE_EXCEPTION(47, ValidationConstants.HTTP_MESSAGE_NOT_READABLE_EXCEPTION);
+    HTTP_MESSAGE_NOT_READABLE_EXCEPTION(47, ValidationConstants.HTTP_MESSAGE_NOT_READABLE_EXCEPTION),
+
+    THEME_SIZE_NOT_VALID(48, ValidationConstants.THEME_SIZE_NOT_VALID),
+
+    THEME_SIZE_NOT_NULL(49, ValidationConstants.THEME_SIZE_NOT_NULL);
 
     private static final Map<String, Integer> ERROR_CODES = new HashMap<>();
 
