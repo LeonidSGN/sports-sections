@@ -102,7 +102,15 @@ public enum ErrorCodes {
 
     THEME_SIZE_NOT_VALID(48, ValidationConstants.THEME_SIZE_NOT_VALID),
 
-    THEME_SIZE_NOT_NULL(49, ValidationConstants.THEME_SIZE_NOT_NULL);
+    THEME_SIZE_NOT_NULL(49, ValidationConstants.THEME_SIZE_NOT_NULL),
+
+    CATEGORY_SIZE_NOT_NULL(50, ValidationConstants.CATEGORY_SIZE_NOT_NULL),
+
+    CATEGORY_SIZE_NOT_VALID(51, ValidationConstants.CATEGORY_SIZE_NOT_VALID),
+
+    CATEGORY_ALREADY_EXISTS(52, ValidationConstants.CATEGORY_ALREADY_EXISTS),
+
+    CATEGORY_NOT_FOUND(53, ValidationConstants.CATEGORY_NOT_FOUND);
 
     private static final Map<String, Integer> ERROR_CODES = new HashMap<>();
 
