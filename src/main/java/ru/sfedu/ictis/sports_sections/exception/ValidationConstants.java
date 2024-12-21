@@ -98,6 +98,14 @@ public interface ValidationConstants {
 
     String THEME_SIZE_NOT_NULL = "The length of the theme must not null";
 
+    String CATEGORY_SIZE_NOT_NULL = "The length of the category must not null";
+
+    String CATEGORY_SIZE_NOT_VALID = "The length of the category must be from 3 to 100";
+
+    String CATEGORY_ALREADY_EXISTS = "The category should not exist!";
+
+    String CATEGORY_NOT_FOUND = "This category does not exist";
+
     private void doNothingMethod() {
 
     }
