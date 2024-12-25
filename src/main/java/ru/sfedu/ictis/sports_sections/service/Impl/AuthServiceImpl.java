@@ -23,7 +23,10 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
 
-    public AuthServiceImpl(UserRepository userRepo, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, UserMapper userMapper) {
+    public AuthServiceImpl(UserRepository userRepo,
+                           PasswordEncoder passwordEncoder,
+                           JwtUtil jwtUtil,
+                           UserMapper userMapper) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;

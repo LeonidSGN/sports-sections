@@ -2,8 +2,6 @@ package ru.sfedu.ictis.sports_sections.exception;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
-import ru.sfedu.ictis.sports_sections.dto.response.common.BaseSuccessResponse;
-import ru.sfedu.ictis.sports_sections.dto.response.common.CustomSuccessResponse;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.multipart.MultipartException;
+import ru.sfedu.ictis.sports_sections.dto.response.common.BaseSuccessResponse;
+import ru.sfedu.ictis.sports_sections.dto.response.common.CustomSuccessResponse;
 
 import java.util.List;
 
@@ -35,7 +35,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     ResponseEntity handle(HttpMessageNotReadableException e) {
-        return ResponseEntity.badRequest().header("errorMessage", ErrorCodes.HTTP_MESSAGE_NOT_READABLE_EXCEPTION.getMessage())
+        return ResponseEntity
+                .badRequest()
+                .header("errorMessage", ErrorCodes.HTTP_MESSAGE_NOT_READABLE_EXCEPTION.getMessage())
                 .body(new BaseSuccessResponse(ErrorCodes.HTTP_MESSAGE_NOT_READABLE_EXCEPTION.getCode(),
                         List.of(ErrorCodes.HTTP_MESSAGE_NOT_READABLE_EXCEPTION.getCode())));
     }

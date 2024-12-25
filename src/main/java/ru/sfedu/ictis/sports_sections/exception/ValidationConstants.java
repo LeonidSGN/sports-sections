@@ -106,6 +106,30 @@ public interface ValidationConstants {
 
     String CATEGORY_NOT_FOUND = "This category does not exist";
 
+    String SECTION_NAME_NULL = "The section name must not be null or empty.";
+
+    String SECTION_NAME_SIZE_NOT_VALID = "The section name must be between 1 and 100 characters.";
+
+    String SECTION_DESCRIPTION_NULL = "The section description must not be null or empty.";
+
+    String SECTION_DESCRIPTION_SIZE_NOT_VALID = "The section description must be between 1 and 100 characters.";
+
+    String SECTION_LOCATION_NULL = "The section location must not be null or empty.";
+
+    String SECTION_LOCATION_SIZE_NOT_VALID = "The section location must be between 1 and 100 characters.";
+
+    String SECTION_TRAINER_ID_NULL = "The trainer ID must not be null.";
+
+    String SECTION_TRAINER_ID_NEGATIVE = "The trainer ID must be a positive number.";
+
+    String SECTION_CATEGORIES_EMPTY = "The section must have at least one category.";
+
+    String SECTION_CATEGORIES_NULL = "The categories field must not be null.";
+
+    String NO_RIGHTS_FOR_CREATE_SECTION = "Only a trainer can create a section!";
+
+    String SECTION_NOT_FOUND = "This section does not exist";
+
     private void doNothingMethod() {
 
     }

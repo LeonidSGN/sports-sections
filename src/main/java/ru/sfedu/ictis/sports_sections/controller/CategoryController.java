@@ -34,7 +34,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomSuccessResponse<CategoryEntity>> addCategory (
+    public ResponseEntity<CustomSuccessResponse<CategoryEntity>> addCategory(
             @Valid
             @RequestBody
             CategoryDtoRequest categoryDtoRequest) {
@@ -42,18 +42,22 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomSuccessResponse<CategoryEntity>> getCategoryById(@PathVariable
-                                                                                 Long id) {
+    public ResponseEntity<CustomSuccessResponse<CategoryEntity>> getCategoryById(
+            @PathVariable
+            Long id) {
         return ResponseEntity.ok(new CustomSuccessResponse<>(categoryService.getCategoryById(id)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomSuccessResponse<CategoryEntity>> replaceCategoryById(@PathVariable
-                                                                                     Long id,
-                                                                                     @Valid
-                                                                                     @RequestBody
-                                                                                     CategoryDtoRequest categoryDtoRequest) {
-        return ResponseEntity.ok(new CustomSuccessResponse<>(categoryService.replaceCategoryById(id, categoryDtoRequest)));
+    public ResponseEntity<CustomSuccessResponse<CategoryEntity>> replaceCategoryById(
+            @PathVariable
+            Long id,
+            @Valid
+            @RequestBody
+            CategoryDtoRequest categoryDtoRequest) {
+        return ResponseEntity.ok(
+                new CustomSuccessResponse<>(categoryService.replaceCategoryById(id, categoryDtoRequest))
+        );
     }
 
     @DeleteMapping("/{id}")
