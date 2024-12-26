@@ -130,6 +130,12 @@ public interface ValidationConstants {
 
     String SECTION_NOT_FOUND = "This section does not exist";
 
+    String STATUS_NULL = "Status cannot be null";
+
+    String STATUS_SIZE_NOT_VALID = "The length of the status must be from 3 to 100";
+
+    String ENROLLMENT_NOT_FOUND = "This enrollment does not exist";
+
     private void doNothingMethod() {
 
     }

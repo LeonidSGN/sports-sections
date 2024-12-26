@@ -74,16 +74,16 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public PagenableResponse getSections(Integer page, Integer perPage) {
+    public PagenableResponse<GetSectionDtoResponse> getSections(Integer page, Integer perPage) {
         Pageable pageable = PageRequest.of(page - 1, perPage, Sort.by(Sort.Direction.DESC, "id"));
 
         Page<SectionEntity> sectionPage = sectionRepository.findAll(pageable);
 
-        return new PagenableResponse(sectionsPageToListGetSectionDto(sectionPage), sectionPage.getTotalElements());
+        return new PagenableResponse<>(sectionsPageToListGetSectionDto(sectionPage), sectionPage.getTotalElements());
     }
 
     @Override
-    public PagenableResponse findSections(String trainer,
+    public PagenableResponse<GetSectionDtoResponse> findSections(String trainer,
                                           String keywords,
                                           String location,
                                           Set<String> categories,
@@ -98,7 +98,7 @@ public class SectionServiceImpl implements SectionService {
 
         Page<SectionEntity> sectionPage = sectionRepository.findAll(spec, pageable);
 
-        return new PagenableResponse(sectionsPageToListGetSectionDto(sectionPage), sectionPage.getTotalElements());
+        return new PagenableResponse<>(sectionsPageToListGetSectionDto(sectionPage), sectionPage.getTotalElements());
     }
 
     @Override
@@ -122,7 +122,7 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public PagenableResponse getAllSectionsOfTrainer(Integer page, Integer perPage, Long id) {
+    public PagenableResponse<GetSectionDtoResponse> getAllSectionsOfTrainer(Integer page, Integer perPage, Long id) {
         Pageable pageable = PageRequest.of(page - 1, perPage, Sort.by(Sort.Direction.DESC, "id"));
 
         UserEntity trainer = userRepository.findById(id)
@@ -130,7 +130,7 @@ public class SectionServiceImpl implements SectionService {
 
         Page<SectionEntity> sectionsPage = sectionRepository.findAllByTrainer(pageable, trainer);
 
-        return new PagenableResponse(sectionsPageToListGetSectionDto(sectionsPage), sectionsPage.getTotalElements());
+        return new PagenableResponse<>(sectionsPageToListGetSectionDto(sectionsPage), sectionsPage.getTotalElements());
     }
 
     @Override

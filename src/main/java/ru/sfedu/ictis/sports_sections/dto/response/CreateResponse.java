@@ -6,10 +6,10 @@ import ru.sfedu.ictis.sports_sections.dto.response.common.BaseSuccessResponse;
 
 @Setter
 @Getter
-public class CreateSectionResponse extends BaseSuccessResponse {
+public class CreateResponse extends BaseSuccessResponse {
     private Long id;
 
-    public CreateSectionResponse(Long id) {
+    public CreateResponse(Long id) {
         super(0);
         this.id = id;
     }

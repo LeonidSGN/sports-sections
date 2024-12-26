@@ -9,9 +9,9 @@ import java.util.Set;
 public interface SectionService {
     Long createSection(SectionDtoRequest sectionDtoRequest);
 
-    PagenableResponse getSections(Integer page, Integer perPage);
+    PagenableResponse<GetSectionDtoResponse> getSections(Integer page, Integer perPage);
 
-    PagenableResponse findSections(
+    PagenableResponse<GetSectionDtoResponse> findSections(
             String trainer,
             String keyword,
             String location,
@@ -21,7 +21,7 @@ public interface SectionService {
 
     GetSectionDtoResponse getSectionById(Long id);
 
-    PagenableResponse getAllSectionsOfTrainer(Integer page, Integer perPage, Long id);
+    PagenableResponse<GetSectionDtoResponse> getAllSectionsOfTrainer(Integer page, Integer perPage, Long id);
 
     void putSection(Long id, SectionDtoRequest section);
 
