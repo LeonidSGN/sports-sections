@@ -31,7 +31,10 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<CustomSuccessResponse<UserResponse>> replaceUser(@Valid @RequestBody PutUserDtoRequest putUserDto) {
+    public ResponseEntity<CustomSuccessResponse<UserResponse>> replaceUser(
+            @Valid
+            @RequestBody
+            PutUserDtoRequest putUserDto) {
         return ResponseEntity.ok(new CustomSuccessResponse<>(userService.replaceUser(putUserDto)));
     }
 
