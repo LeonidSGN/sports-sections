@@ -134,7 +134,13 @@ public enum ErrorCodes {
 
     NO_RIGHTS_FOR_CREATE_SECTION(64, ValidationConstants.NO_RIGHTS_FOR_CREATE_SECTION),
 
-    SECTION_NOT_FOUND(65, ValidationConstants.SECTION_NOT_FOUND);
+    SECTION_NOT_FOUND(65, ValidationConstants.SECTION_NOT_FOUND),
+
+    STATUS_NULL(66, ValidationConstants.STATUS_NULL),
+
+    STATUS_SIZE_NOT_VALID(67, ValidationConstants.STATUS_SIZE_NOT_VALID),
+
+    ENROLLMENT_NOT_FOUND(68, ValidationConstants.ENROLLMENT_NOT_FOUND);
 
     private static final Map<String, Integer> ERROR_CODES = new HashMap<>();
 
