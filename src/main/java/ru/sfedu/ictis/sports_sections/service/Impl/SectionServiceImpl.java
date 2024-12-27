@@ -61,7 +61,7 @@ public class SectionServiceImpl implements SectionService {
                 .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
 
         if (!trainer.getRole().equals("trainer")) {
-            throw new CustomException(ErrorCodes.NO_RIGHTS_FOR_CREATE_SECTION);
+            throw new CustomException(ErrorCodes.NO_RIGHTS_FOR_CREATE);
         }
 
         SectionEntity sectionEntity = sectionMapper.toSectionEntity(sectionDtoRequest);

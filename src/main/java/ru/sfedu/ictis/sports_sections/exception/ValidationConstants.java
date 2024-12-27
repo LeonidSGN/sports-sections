@@ -126,7 +126,9 @@ public interface ValidationConstants {
 
     String SECTION_CATEGORIES_NULL = "The categories field must not be null.";
 
-    String NO_RIGHTS_FOR_CREATE_SECTION = "Only a trainer can create a section!";
+    String SECTION_ID_NULL = "Section ID is required";
+
+    String NO_RIGHTS_FOR_CREATE = "Only a trainer can create!";
 
     String SECTION_NOT_FOUND = "This section does not exist";
 
@@ -147,6 +149,12 @@ public interface ValidationConstants {
     String ACHIEVEMENT_TEMPLATE_NOT_FOUND = "This achievement template does not exist";
 
     String ACHIEVEMENT_TEMPLATE_TITLE_EXIST = "This title already exists";
+
+    String DATE_NULL = "Date cannot be NULL";
+
+    String DATE_NOT_FUTURE = "The date can only be in the future";
+
+    String SESSION_NOT_FOUND = "This session does not exist";
 
     private void doNothingMethod() {
 

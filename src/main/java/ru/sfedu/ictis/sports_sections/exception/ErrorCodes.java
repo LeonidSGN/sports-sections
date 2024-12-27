@@ -132,7 +132,7 @@ public enum ErrorCodes {
 
     SECTION_CATEGORIES_NULL(63, ValidationConstants.SECTION_CATEGORIES_NULL),
 
-    NO_RIGHTS_FOR_CREATE_SECTION(64, ValidationConstants.NO_RIGHTS_FOR_CREATE_SECTION),
+    NO_RIGHTS_FOR_CREATE(64, ValidationConstants.NO_RIGHTS_FOR_CREATE),
 
     SECTION_NOT_FOUND(65, ValidationConstants.SECTION_NOT_FOUND),
 
@@ -152,7 +152,15 @@ public enum ErrorCodes {
 
     ACHIEVEMENT_TEMPLATE_NOT_FOUND(73, ValidationConstants.ACHIEVEMENT_TEMPLATE_NOT_FOUND),
 
-    ACHIEVEMENT_TEMPLATE_TITLE_EXIST(74, ValidationConstants.ACHIEVEMENT_TEMPLATE_TITLE_EXIST);
+    ACHIEVEMENT_TEMPLATE_TITLE_EXIST(74, ValidationConstants.ACHIEVEMENT_TEMPLATE_TITLE_EXIST),
+
+    DATE_NULL(75, ValidationConstants.DATE_NULL),
+
+    DATE_NOT_FUTURE(76, ValidationConstants.DATE_NOT_FUTURE),
+
+    SESSION_NOT_FOUND(77, ValidationConstants.SESSION_NOT_FOUND),
+
+    SECTION_ID_NULL(78, ValidationConstants.SECTION_ID_NULL);
 
     private static final Map<String, Integer> ERROR_CODES = new HashMap<>();
 
