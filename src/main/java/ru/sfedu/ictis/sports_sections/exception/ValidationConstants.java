@@ -136,6 +136,18 @@ public interface ValidationConstants {
 
     String ENROLLMENT_NOT_FOUND = "This enrollment does not exist";
 
+    String ACHIEVEMENT_TITLE_NULL = "The achievement title must not be null or empty.";
+
+    String ACHIEVEMENT_TITLE_SIZE_NOT_VALID = "The achievement title must be between 3 and 100 characters.";
+
+    String ACHIEVEMENT_DESCRIPTION_NULL = "The achievement description must not be null or empty.";
+
+    String ACHIEVEMENT_DESCRIPTION_SIZE_NOT_VALID = "The achievement description must be between 3 and 150 characters.";
+
+    String ACHIEVEMENT_TEMPLATE_NOT_FOUND = "This achievement template does not exist";
+
+    String ACHIEVEMENT_TEMPLATE_TITLE_EXIST = "This title already exists";
+
     private void doNothingMethod() {
 
     }
