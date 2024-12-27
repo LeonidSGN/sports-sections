@@ -48,6 +48,9 @@ public class UserEntity {
     @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<SectionEntity> sectionEntities = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AchievementEntity> achievementEntities = new LinkedHashSet<>();
+
     @PrePersist
     private void setDefaultValues() {
         if (this.theme == null) {
