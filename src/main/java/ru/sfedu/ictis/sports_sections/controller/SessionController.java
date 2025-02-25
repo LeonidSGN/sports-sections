@@ -44,6 +44,30 @@ public class SessionController {
         return ResponseEntity.ok(new CustomSuccessResponse<>(sessionService.getAllSessions()));
     }
 
+    @GetMapping("/trainer/count/{id}")
+    public ResponseEntity<CustomSuccessResponse<Long>> getCountAllSessionsForTrainer(
+            @PathVariable
+            @Positive
+            Long id) {
+        return ResponseEntity.ok(new CustomSuccessResponse<>(sessionService.getCountAllSessionsForTrainer(id)));
+    }
+
+    @GetMapping("/trainer/{id}")
+    public ResponseEntity<CustomSuccessResponse<List<SessionResponse>>> getTrainerSchedule(
+            @PathVariable
+            @Positive
+            Long id) {
+        return ResponseEntity.ok(new CustomSuccessResponse<>(sessionService.getTrainerSchedule(id)));
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<CustomSuccessResponse<List<SessionResponse>>> getUserSchedule(
+            @PathVariable
+            @Positive
+            Long id) {
+        return ResponseEntity.ok(new CustomSuccessResponse<>(sessionService.getUserSchedule(id)));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<CustomSuccessResponse<SessionResponse>> putSession(
             @PathVariable

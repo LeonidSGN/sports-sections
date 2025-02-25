@@ -1,5 +1,9 @@
 package ru.sfedu.ictis.sports_sections.service.Impl;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.sfedu.ictis.sports_sections.dto.request.PutSessionDtoRequest;
@@ -63,6 +67,49 @@ public class SessionServiceImpl implements SessionService {
     @Override
     public List<SessionResponse> getAllSessions() {
         List<SessionEntity> sessions = sessionRepository.findAll();
+        return sessions
+                .stream()
+                .map(entity -> {
+                    SessionResponse dto = sessionMapper.toSessionResponse(entity);
+                    dto.setTrainerName(entity.getTrainer().getName());
+                    dto.setTrainerId(entity.getTrainer().getId());
+                    dto.setSectionName(entity.getSection().getName());
+                    dto.setSectionId(entity.getSection().getId());
+
+                    return dto;
+                }).toList();
+    }
+
+    @Override
+    public Long getCountAllSessionsForTrainer(Long id) {
+        UserEntity trainer = userRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
+
+        return sessionRepository.countPastSessionsByTrainer(id);
+    }
+
+    @Override
+    public List<SessionResponse> getTrainerSchedule(Long trainerId) {
+        UserEntity trainer = userRepository.findById(trainerId)
+                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
+
+        List<SessionEntity> sessions =  sessionRepository.findByTrainerId(trainer.getId());
+        return sessions
+                .stream()
+                .map(entity -> {
+                    SessionResponse dto = sessionMapper.toSessionResponse(entity);
+                    dto.setTrainerName(entity.getTrainer().getName());
+                    dto.setTrainerId(entity.getTrainer().getId());
+                    dto.setSectionName(entity.getSection().getName());
+                    dto.setSectionId(entity.getSection().getId());
+
+                    return dto;
+                }).toList();
+    }
+
+    @Override
+    public List<SessionResponse> getUserSchedule(Long userId) {
+        List<SessionEntity> sessions = sessionRepository.findUserSessions(userId);
         return sessions
                 .stream()
                 .map(entity -> {
