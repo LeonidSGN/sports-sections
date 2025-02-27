@@ -16,7 +16,7 @@ public interface SessionRepository extends JpaRepository<SessionEntity, Long> {
         JOIN s.section sec
         JOIN EnrollmentEntity e ON e.section.id = sec.id
         WHERE e.user.id = :userId AND e.status = 'register'
-    """)
+        """)
     List<SessionEntity> findUserSessions(@Param("userId") Long userId);
 
     List<SessionEntity> findByTrainerId(Long trainerId);

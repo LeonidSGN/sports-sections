@@ -1,9 +1,5 @@
 package ru.sfedu.ictis.sports_sections.service.Impl;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.sfedu.ictis.sports_sections.dto.request.PutSessionDtoRequest;
@@ -93,7 +89,7 @@ public class SessionServiceImpl implements SessionService {
         UserEntity trainer = userRepository.findById(trainerId)
                 .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
 
-        List<SessionEntity> sessions =  sessionRepository.findByTrainerId(trainer.getId());
+        List<SessionEntity> sessions = sessionRepository.findByTrainerId(trainer.getId());
         return sessions
                 .stream()
                 .map(entity -> {
