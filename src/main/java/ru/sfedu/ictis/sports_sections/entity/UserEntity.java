@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -44,6 +45,9 @@ public class UserEntity {
 
     @Column(name = "theme")
     private String theme;
+
+    @Column(name = "createAt")
+    private LocalDateTime createAt;
 
     @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<SectionEntity> sectionEntities = new LinkedHashSet<>();

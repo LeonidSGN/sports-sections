@@ -13,6 +13,8 @@ import ru.sfedu.ictis.sports_sections.repository.UserRepository;
 import ru.sfedu.ictis.sports_sections.security.JwtUtil;
 import ru.sfedu.ictis.sports_sections.service.AuthService;
 
+import java.time.LocalDateTime;
+
 @Service
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepo;
@@ -41,6 +43,7 @@ public class AuthServiceImpl implements AuthService {
 
         UserEntity user = userMapper.toUserEntity(userDto);
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setCreateAt(LocalDateTime.now());
         userRepo.save(user);
 
         String token = jwtUtil.generateToken(user.getEmail(), user.getId());
