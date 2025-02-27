@@ -160,7 +160,17 @@ public enum ErrorCodes {
 
     SESSION_NOT_FOUND(77, ValidationConstants.SESSION_NOT_FOUND),
 
-    SECTION_ID_NULL(78, ValidationConstants.SECTION_ID_NULL);
+    SECTION_ID_NULL(78, ValidationConstants.SECTION_ID_NULL),
+
+    REVIEWS_RATING_NOT_VALID(79, ValidationConstants.REVIEWS_RATING_NOT_VALID),
+
+    REVIEWS_COMMENT_NOT_VALID(80, ValidationConstants.REVIEWS_COMMENT_NOT_VALID),
+
+    NO_RIGHT_FOR_CREATE_REVIEW(81, ValidationConstants.NO_RIGHT_FOR_CREATE_REVIEW),
+
+    REVIEW_NOT_FOUND(82, ValidationConstants.REVIEW_NOT_FOUND),
+
+    REVIEW_EXISTS(83, ValidationConstants.REVIEW_EXISTS);
 
     private static final Map<String, Integer> ERROR_CODES = new HashMap<>();
 

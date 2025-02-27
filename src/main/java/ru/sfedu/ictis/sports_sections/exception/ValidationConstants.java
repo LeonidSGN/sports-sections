@@ -156,6 +156,17 @@ public interface ValidationConstants {
 
     String SESSION_NOT_FOUND = "This session does not exist";
 
+    String REVIEWS_RATING_NOT_VALID = "The rating in the review can be from 1 to 5";
+
+    String REVIEWS_COMMENT_NOT_VALID = "The comment in the review can be from 1 to 255";
+
+    String NO_RIGHT_FOR_CREATE_REVIEW = "To create a review," +
+            " you must be registered for the section and have attended a lesson.";
+
+    String REVIEW_NOT_FOUND = "This review does not exist";
+
+    String REVIEW_EXISTS = "This is review exist";
+
     private void doNothingMethod() {
 
     }
