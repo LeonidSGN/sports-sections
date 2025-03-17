@@ -170,7 +170,15 @@ public enum ErrorCodes {
 
     REVIEW_NOT_FOUND(82, ValidationConstants.REVIEW_NOT_FOUND),
 
-    REVIEW_EXISTS(83, ValidationConstants.REVIEW_EXISTS);
+    REVIEW_EXISTS(83, ValidationConstants.REVIEW_EXISTS),
+
+    LOCATION_EXISTS(84, ValidationConstants.LOCATION_EXISTS),
+
+    LOCATION_NOT_EXISTS(85, ValidationConstants.LOCATION_NOT_EXISTS),
+
+    NO_RIGHT(86, ValidationConstants.NO_RIGHT),
+
+    SECTION_EXISTS(87, "Section with this name and location already exists");
 
     private static final Map<String, Integer> ERROR_CODES = new HashMap<>();
 

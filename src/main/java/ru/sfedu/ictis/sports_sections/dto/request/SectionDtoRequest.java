@@ -2,6 +2,8 @@ package ru.sfedu.ictis.sports_sections.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,9 +24,9 @@ public class SectionDtoRequest {
     @Size(min = 1, max = 100, message = ValidationConstants.SECTION_DESCRIPTION_SIZE_NOT_VALID)
     private String description;
 
-    @NotBlank(message = ValidationConstants.SECTION_LOCATION_NULL)
-    @Size(min = 1, max = 100, message = ValidationConstants.SECTION_LOCATION_SIZE_NOT_VALID)
-    private String location;
+    @NotNull(message = ValidationConstants.SECTION_LOCATION_NULL)
+    @Positive(message = ValidationConstants.ID_MUST_BE_POSITIVE)
+    private Long locationId;
 
     @NotEmpty(message = ValidationConstants.SECTION_CATEGORIES_EMPTY)
     private Set<@NotBlank(message = ValidationConstants.SECTION_CATEGORIES_NULL) String> categories;

@@ -1,10 +1,13 @@
 package ru.sfedu.ictis.sports_sections.specification;
 
 import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import ru.sfedu.ictis.sports_sections.entity.CategoryEntity;
+import ru.sfedu.ictis.sports_sections.entity.LocationEntity;
 import ru.sfedu.ictis.sports_sections.entity.SectionEntity;
+import ru.sfedu.ictis.sports_sections.entity.UserEntity;
 
 import java.util.Set;
 
@@ -14,10 +17,19 @@ public class SectionSpecification {
             if (trainerName == null || trainerName.isEmpty()) {
                 return criteriaBuilder.conjunction();
             }
+
+            Join<SectionEntity, UserEntity> trainers = root.join("trainers");
             return criteriaBuilder.like(
-                    criteriaBuilder.lower(root.get("trainer").get("name")),
+                    criteriaBuilder.lower(trainers.get("name")),
                     "%" + trainerName.toLowerCase() + "%"
             );
+        };
+    }
+
+    public static Specification<SectionEntity> hasTrainers() {
+        return (root, query, criteriaBuilder) -> {
+            Join<SectionEntity, UserEntity> trainers = root.join("trainers", JoinType.INNER);
+            return criteriaBuilder.isNotEmpty(root.get("trainers"));
         };
     }
 
@@ -33,14 +45,16 @@ public class SectionSpecification {
         };
     }
 
-    public static Specification<SectionEntity> hasLocation(String location) {
+    public static Specification<SectionEntity> hasLocation(String locationName) {
         return (root, query, criteriaBuilder) -> {
-            if (location == null || location.isEmpty()) {
+            if (locationName == null || locationName.isEmpty()) {
                 return criteriaBuilder.conjunction();
             }
+
+            Join<SectionEntity, LocationEntity> location = root.join("location");
             return criteriaBuilder.like(
-                    criteriaBuilder.lower(root.get("location")),
-                    "%" + location.toLowerCase() + "%"
+                    criteriaBuilder.lower(location.get("fullLocation")),
+                    "%" + locationName.toLowerCase() + "%"
             );
         };
     }

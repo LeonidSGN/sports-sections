@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserResponse {
-    private String id;
+    private Long id;
 
     private String avatar;
 

@@ -37,12 +37,9 @@ public class SectionEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "location")
-    private String location;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trainer_id")
-    private UserEntity trainer;
+    @JoinColumn(name = "location_id")
+    private LocationEntity location;
 
     @ManyToMany
     @JoinTable(
@@ -52,4 +49,13 @@ public class SectionEntity {
     )
     @Fetch(FetchMode.JOIN)
     private Set<CategoryEntity> categoryEntities = new LinkedHashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "sections_trainers",
+            joinColumns = @JoinColumn(name = "section_id"),
+            inverseJoinColumns = @JoinColumn(name = "trainer_id")
+    )
+    @Fetch(FetchMode.JOIN)
+    private Set<UserEntity> trainers = new LinkedHashSet<>();
 }

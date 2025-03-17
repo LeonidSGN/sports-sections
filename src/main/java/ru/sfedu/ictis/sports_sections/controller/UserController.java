@@ -1,15 +1,19 @@
 package ru.sfedu.ictis.sports_sections.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.sfedu.ictis.sports_sections.dto.request.PutUserDtoRequest;
+import ru.sfedu.ictis.sports_sections.dto.response.GetSectionDtoResponse;
 import ru.sfedu.ictis.sports_sections.dto.response.UserResponse;
 import ru.sfedu.ictis.sports_sections.dto.response.common.CustomSuccessResponse;
 import ru.sfedu.ictis.sports_sections.service.UserService;
@@ -63,5 +67,13 @@ public class UserController {
                                                                                @RequestBody
                                                                                PutUserDtoRequest putUserDto) {
         return ResponseEntity.ok(new CustomSuccessResponse<>(userService.replaceUserById(id, putUserDto)));
+    }
+
+    @PostMapping("/addTrainerForSection/{sectionId}")
+    public ResponseEntity<CustomSuccessResponse<GetSectionDtoResponse>> assignTrainerToSection(
+            @Positive
+            @PathVariable
+            Long sectionId) {
+        return ResponseEntity.ok(new CustomSuccessResponse<>(userService.assignTrainerToSection(sectionId)));
     }
 }

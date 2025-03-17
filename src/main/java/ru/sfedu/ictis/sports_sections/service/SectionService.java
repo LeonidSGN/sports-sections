@@ -23,6 +23,8 @@ public interface SectionService {
 
     PagenableResponse<GetSectionDtoResponse> getAllSectionsOfTrainer(Integer page, Integer perPage, Long id);
 
+    PagenableResponse<GetSectionDtoResponse> getSectionsWithTrainer(Integer page, Integer perPage);
+
     void putSection(Long id, SectionDtoRequest section);
 
     void deleteSection(Long id);
