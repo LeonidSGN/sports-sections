@@ -53,7 +53,20 @@ public class EnrollmentServiceImpl implements EnrollmentService {
                 .findById(enrollDtoRequest.getSectionId())
                 .orElseThrow(() -> new CustomException(ErrorCodes.SECTION_NOT_FOUND));
 
-        EnrollmentEntity enrollment = enrollmentMapper.toEnrollmentEntity(enrollDtoRequest, user, section);
+        UserEntity trainer = userRepository
+                .findById(enrollDtoRequest.getTrainerId())
+                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
+
+        boolean trainerAssigned = sectionRepository.existsByIdAndTrainers_Id(
+                enrollDtoRequest.getSectionId(),
+                enrollDtoRequest.getTrainerId()
+        );
+
+        if (!trainerAssigned) {
+            throw new CustomException(ErrorCodes.TRAINER_NOT_ASSIGNED_TO_SECTION);
+        }
+
+        EnrollmentEntity enrollment = enrollmentMapper.toEnrollmentEntity(enrollDtoRequest, user, section, trainer);
         enrollmentRepository.save(enrollment);
         return enrollment.getId();
     }
@@ -84,6 +97,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         );
     }
 
+
+
     @Override
     public GetEnrollmentsDtoResponse getEnrollment(Long id) {
         EnrollmentEntity enrollment = enrollmentRepository
@@ -95,6 +110,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         dto.setSectionName(enrollment.getSection().getName());
         dto.setUserId(enrollment.getUser().getId());
         dto.setUserName(enrollment.getUser().getName());
+        dto.setTrainerId(enrollment.getTrainer().getId());
+        dto.setTrainerName(enrollment.getTrainer().getName());
         return dto;
     }
 
@@ -130,6 +147,30 @@ public class EnrollmentServiceImpl implements EnrollmentService {
                 enrollmentsPageToListGetEnrollDto(enrollmentsPage), enrollmentsPage.getTotalElements());
     }
 
+    @Override
+    public List<GetEnrollmentsDtoResponse> getListEnrollmentsForUserById(Long userId) {
+        UserEntity user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
+
+        List<EnrollmentEntity> enrollments = enrollmentRepository.findAllByUser(user);
+
+        List<GetEnrollmentsDtoResponse> result = enrollments
+                .stream()
+                .map(enrollment ->   {
+                    GetEnrollmentsDtoResponse dto = enrollmentMapper.toGetEnrollmentsDtoResponse(enrollment);
+                    dto.setSectionId(enrollment.getSection().getId());
+                    dto.setSectionName(enrollment.getSection().getName());
+                    dto.setUserId(enrollment.getUser().getId());
+                    dto.setUserName(enrollment.getUser().getName());
+                    dto.setTrainerId(enrollment.getTrainer().getId());
+                    dto.setTrainerName(enrollment.getTrainer().getName());
+                    return dto;
+                }).toList();
+
+        return List.of();
+    }
+
     public String getCurrentUserEmail() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
@@ -142,7 +183,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
                     dto.setSectionName(enroll.getSection().getName());
                     dto.setUserId(enroll.getUser().getId());
                     dto.setUserName(enroll.getUser().getName());
-
+                    dto.setTrainerId(enroll.getTrainer().getId());
+                    dto.setTrainerName(enroll.getTrainer().getName());
                     return dto;
                 })
                 .toList();

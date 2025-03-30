@@ -3,6 +3,7 @@ package ru.sfedu.ictis.sports_sections.service.Impl;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.sfedu.ictis.sports_sections.dto.request.ChangeRoleRequest;
 import ru.sfedu.ictis.sports_sections.dto.request.PutUserDtoRequest;
 import ru.sfedu.ictis.sports_sections.dto.response.CategoryDtoResponse;
 import ru.sfedu.ictis.sports_sections.dto.response.GetSectionDtoResponse;
@@ -11,6 +12,7 @@ import ru.sfedu.ictis.sports_sections.entity.SectionEntity;
 import ru.sfedu.ictis.sports_sections.entity.UserEntity;
 import ru.sfedu.ictis.sports_sections.exception.CustomException;
 import ru.sfedu.ictis.sports_sections.exception.ErrorCodes;
+import ru.sfedu.ictis.sports_sections.exception.ValidationConstants;
 import ru.sfedu.ictis.sports_sections.mapper.CategoryMapper;
 import ru.sfedu.ictis.sports_sections.mapper.LocationMapper;
 import ru.sfedu.ictis.sports_sections.mapper.SectionMapper;
@@ -89,6 +91,23 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserResponse(userEntity);
     }
 
+    @Override
+    public UserResponse changeUserRole(Long id, ChangeRoleRequest role) {
+        UserEntity admin = userRepository.findByEmail(getCurrentUserEmail())
+                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
+
+        if (!admin.getRole().equals("admin")) {
+            throw new CustomException(ErrorCodes.NO_RIGHT);
+        }
+
+        UserEntity userEntity = userRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
+
+        userEntity.setRole(role.getRole());
+        userRepository.save(userEntity);
+        return userMapper.toUserResponse(userEntity);
+    }
+
     @Transactional
     @Override
     public GetSectionDtoResponse assignTrainerToSection(Long sectionId) {
@@ -97,6 +116,10 @@ public class UserServiceImpl implements UserService {
 
         SectionEntity section = sectionRepository.findById(sectionId)
                 .orElseThrow(() -> new CustomException(ErrorCodes.SECTION_NOT_FOUND));
+
+        if (!trainer.getRole().equals("trainer")) {
+            throw new CustomException(ErrorCodes.NO_RIGHT);
+        }
 
         if (!section.getTrainers().contains(trainer)) {
             section.getTrainers().add(trainer);

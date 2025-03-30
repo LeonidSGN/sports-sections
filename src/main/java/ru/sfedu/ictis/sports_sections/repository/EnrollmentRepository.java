@@ -9,6 +9,8 @@ import ru.sfedu.ictis.sports_sections.entity.EnrollmentEntity;
 import ru.sfedu.ictis.sports_sections.entity.SectionEntity;
 import ru.sfedu.ictis.sports_sections.entity.UserEntity;
 
+import java.util.List;
+
 public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Long> {
 
     Page<EnrollmentEntity> findAllByUser(UserEntity user, Pageable pageable);
@@ -26,4 +28,6 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Lo
             @Param("sectionId") Long sectionId,
             @Param("status") String status
     );
+
+    List<EnrollmentEntity> findAllByUser(UserEntity user);
 }

@@ -34,6 +34,10 @@ public class EnrollmentEntity {
     @JoinColumn(name = "section_id", nullable = false)
     private SectionEntity section;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "trainer_id", nullable = false)
+    private UserEntity trainer;
+
     @Column(name = "status", nullable = false)
     private String status;
 }

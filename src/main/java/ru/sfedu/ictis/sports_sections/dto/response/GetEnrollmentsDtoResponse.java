@@ -20,5 +20,9 @@ public class GetEnrollmentsDtoResponse {
 
     private String sectionName;
 
+    private Long trainerId;
+
+    private String trainerName;
+
     private String status;
 }

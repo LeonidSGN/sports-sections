@@ -24,5 +24,5 @@ public class ReviewDtoResponse {
 
     private String userName;
 
-    private Long sessionId;
+    private Long sectionId;
 }

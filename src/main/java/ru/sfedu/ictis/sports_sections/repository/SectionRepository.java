@@ -22,4 +22,6 @@ public interface SectionRepository extends JpaRepository<SectionEntity, Long> {
 
     @Query("SELECT DISTINCT s FROM SectionEntity s JOIN s.trainers t")
     Page<SectionEntity> findAllWithTrainers(Pageable pageable);
+
+    boolean existsByIdAndTrainers_Id(Long sectionId, Long trainerId);
 }

@@ -17,6 +17,9 @@ public class EnrollDtoRequest {
     @Positive
     private Long sectionId;
 
+    @Positive
+    private Long trainerId;
+
     @NotBlank(message = ValidationConstants.STATUS_NULL)
     @Size(min = 1, max = 100, message = ValidationConstants.STATUS_SIZE_NOT_VALID)
     private String status;

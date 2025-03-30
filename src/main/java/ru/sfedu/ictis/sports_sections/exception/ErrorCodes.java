@@ -58,7 +58,7 @@ public enum ErrorCodes {
 
     MAX_UPLOAD_SIZE_EXCEEDED(23, "Maximum upload size exceeded"),
 
-    USER_AVATAR_NOT_NULL(24, "user avatar mustn't be null"),
+    AVATAR_NOT_NULL(24, "Avatar mustn't be null"),
 
     PASSWORD_NOT_VALID(25, "password not valid"),
 
@@ -178,7 +178,13 @@ public enum ErrorCodes {
 
     NO_RIGHT(86, ValidationConstants.NO_RIGHT),
 
-    SECTION_EXISTS(87, "Section with this name and location already exists");
+    SECTION_EXISTS(87, "Section with this name and location already exists"),
+
+    TIME_NULL(88, ValidationConstants.TIME_NULL),
+
+    DAY_NULL(89, ValidationConstants.DAY_NULL),
+
+    TRAINER_NOT_ASSIGNED_TO_SECTION(90, ValidationConstants.TRAINER_NOT_ASSIGNED_TO_SECTION);
 
     private static final Map<String, Integer> ERROR_CODES = new HashMap<>();
 

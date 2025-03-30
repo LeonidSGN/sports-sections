@@ -38,10 +38,10 @@ public class ReviewsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomSuccessResponse<ReviewDtoResponse>> getReviewUserBySession(
+    public ResponseEntity<CustomSuccessResponse<ReviewDtoResponse>> getReviewUserBySection(
             @PathVariable
             Long id) {
-        return ResponseEntity.ok(new CustomSuccessResponse<>(reviewService.getReviewUserBySession(id)));
+        return ResponseEntity.ok(new CustomSuccessResponse<>(reviewService.getReviewUserBySection(id)));
     }
 
     @GetMapping("/section/{id}")

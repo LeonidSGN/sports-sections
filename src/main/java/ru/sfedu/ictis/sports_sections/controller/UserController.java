@@ -1,7 +1,9 @@
 package ru.sfedu.ictis.sports_sections.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.sfedu.ictis.sports_sections.dto.request.ChangeRoleRequest;
 import ru.sfedu.ictis.sports_sections.dto.request.PutUserDtoRequest;
 import ru.sfedu.ictis.sports_sections.dto.response.GetSectionDtoResponse;
 import ru.sfedu.ictis.sports_sections.dto.response.UserResponse;
 import ru.sfedu.ictis.sports_sections.dto.response.common.CustomSuccessResponse;
+import ru.sfedu.ictis.sports_sections.exception.ValidationConstants;
 import ru.sfedu.ictis.sports_sections.service.UserService;
 
 import java.util.List;
@@ -51,6 +55,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<CustomSuccessResponse<UserResponse>> getUserInfoById(
             @PathVariable
+            @Positive
             Long id) {
         return ResponseEntity.ok(new CustomSuccessResponse<>(userService.getUserInfoById(id)));
     }
@@ -61,11 +66,13 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomSuccessResponse<UserResponse>> replaceUserById(@PathVariable
-                                                                               Long id,
-                                                                               @Valid
-                                                                               @RequestBody
-                                                                               PutUserDtoRequest putUserDto) {
+    public ResponseEntity<CustomSuccessResponse<UserResponse>> replaceUserById(
+            @PathVariable
+            @Positive
+            Long id,
+            @Valid
+            @RequestBody
+            PutUserDtoRequest putUserDto) {
         return ResponseEntity.ok(new CustomSuccessResponse<>(userService.replaceUserById(id, putUserDto)));
     }
 
@@ -75,5 +82,17 @@ public class UserController {
             @PathVariable
             Long sectionId) {
         return ResponseEntity.ok(new CustomSuccessResponse<>(userService.assignTrainerToSection(sectionId)));
+    }
+
+    @PostMapping("/changeRole/{id}")
+    public ResponseEntity<CustomSuccessResponse<UserResponse>> changeUserRole(
+            @PathVariable
+            @Positive
+            Long id,
+            @RequestBody
+            @Valid
+            ChangeRoleRequest changeRoleRequest
+    ) {
+        return ResponseEntity.ok(new CustomSuccessResponse<>(userService.changeUserRole(id, changeRoleRequest)));
     }
 }

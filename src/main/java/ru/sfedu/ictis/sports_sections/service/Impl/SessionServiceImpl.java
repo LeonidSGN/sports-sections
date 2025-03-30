@@ -49,6 +49,15 @@ public class SessionServiceImpl implements SessionService {
             throw new CustomException(ErrorCodes.NO_RIGHTS_FOR_CREATE);
         }
 
+        boolean trainerAssigned = sectionRepository.existsByIdAndTrainers_Id(
+                sessionDtoRequest.getSectionId(),
+                trainer.getId()
+        );
+
+        if (!trainerAssigned) {
+            throw new CustomException(ErrorCodes.TRAINER_NOT_ASSIGNED_TO_SECTION);
+        }
+
         SectionEntity sectionEntity = sectionRepository
                 .findById(sessionDtoRequest.getSectionId())
                 .orElseThrow(() -> new CustomException(ErrorCodes.SECTION_NOT_FOUND));
@@ -77,14 +86,6 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public Long getCountAllSessionsForTrainer(Long id) {
-        UserEntity trainer = userRepository.findById(id)
-                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
-
-        return sessionRepository.countPastSessionsByTrainer(id);
-    }
-
-    @Override
     public List<SessionResponse> getTrainerSchedule(Long trainerId) {
         UserEntity trainer = userRepository.findById(trainerId)
                 .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
@@ -105,8 +106,12 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public List<SessionResponse> getUserSchedule(Long userId) {
-        List<SessionEntity> sessions = sessionRepository.findUserSessions(userId);
-        return sessions
+        UserEntity user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new CustomException(ErrorCodes.USER_NOT_FOUND));
+
+        List<SessionEntity> sessionEntities = sessionRepository.findByUserEnrollments(user.getId());
+        return sessionEntities
                 .stream()
                 .map(entity -> {
                     SessionResponse dto = sessionMapper.toSessionResponse(entity);

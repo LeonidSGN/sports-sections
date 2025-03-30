@@ -14,6 +14,8 @@ import java.util.Set;
 public class GetSectionDtoResponse {
     private Long id;
 
+    private String avatar;
+
     private String name;
 
     private String description;

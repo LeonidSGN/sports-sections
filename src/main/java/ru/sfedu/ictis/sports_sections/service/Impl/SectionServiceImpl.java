@@ -68,7 +68,7 @@ public class SectionServiceImpl implements SectionService {
         this.userMapper = userMapper;
         this.locationMapper = locationMapper;
     }
-    // ok
+
     @Override
     public Long createSection(SectionDtoRequest sectionDtoRequest) {
         UserEntity admin = userRepository.findByEmail(getCurrentUserEmail())
@@ -93,7 +93,7 @@ public class SectionServiceImpl implements SectionService {
         sectionRepository.save(sectionEntity);
         return sectionEntity.getId();
     }
-    // ok
+
     @Override
     public PagenableResponse<GetSectionDtoResponse> getSections(Integer page, Integer perPage) {
         Pageable pageable = PageRequest.of(page - 1, perPage, Sort.by(Sort.Direction.DESC, "id"));
@@ -103,7 +103,6 @@ public class SectionServiceImpl implements SectionService {
         return new PagenableResponse<>(sectionsPageToListGetSectionDto(sectionPage), sectionPage.getTotalElements());
     }
 
-    // ok
     @Override
     public PagenableResponse<GetSectionDtoResponse> getSectionsWithTrainer(Integer page, Integer perPage) {
         Pageable pageable = PageRequest.of(page - 1, perPage, Sort.by(Sort.Direction.DESC, "id"));
@@ -113,7 +112,6 @@ public class SectionServiceImpl implements SectionService {
         return new PagenableResponse<>(sectionsPageToListGetSectionDto(sectionPage), sectionPage.getTotalElements());
     }
 
-    // ok vrode
     @Override
     public PagenableResponse<GetSectionDtoResponse> findSections(String trainer,
                                                                  String keywords,
@@ -134,7 +132,6 @@ public class SectionServiceImpl implements SectionService {
         return new PagenableResponse<>(sectionsPageToListGetSectionDto(sectionPage), sectionPage.getTotalElements());
     }
 
-    // ok
     @Override
     public GetSectionDtoResponse getSectionById(Long id) {
         SectionEntity sectionEntity = sectionRepository
@@ -161,7 +158,7 @@ public class SectionServiceImpl implements SectionService {
 
         return res;
     }
-    // ok
+
     @Override
     public PagenableResponse<GetSectionDtoResponse> getAllSectionsOfTrainer(Integer page, Integer perPage, Long id) {
         Pageable pageable = PageRequest.of(page - 1, perPage, Sort.by(Sort.Direction.DESC, "id"));
@@ -174,7 +171,6 @@ public class SectionServiceImpl implements SectionService {
         return new PagenableResponse<>(sectionsPageToListGetSectionDto(sectionsPage), sectionsPage.getTotalElements());
     }
 
-    // ok
     @Override
     public void putSection(Long id, SectionDtoRequest section) {
         UserEntity admin = userRepository.findByEmail(getCurrentUserEmail())
@@ -195,7 +191,6 @@ public class SectionServiceImpl implements SectionService {
         sectionRepository.save(sectionEntity);
     }
 
-    // ok
     @Override
     public void deleteSection(Long id) {
         UserEntity admin = userRepository.findByEmail(getCurrentUserEmail())
