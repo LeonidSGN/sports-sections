@@ -59,6 +59,20 @@ public class SectionController {
         return ResponseEntity.ok(new CustomSuccessResponse<>(sectionService.getSections(page, perPage)));
     }
 
+    @GetMapping("/withTrainers")
+    public ResponseEntity<CustomSuccessResponse<PagenableResponse<GetSectionDtoResponse>>> getSectionsWithTrainers(
+            @RequestParam
+            @Positive(message = ValidationConstants.TASKS_PAGE_GREATER_OR_EQUAL_1)
+            @Min(value = 1, message = ValidationConstants.TASKS_PAGE_GREATER_OR_EQUAL_1)
+            Integer page,
+            @RequestParam
+            @Positive(message = ValidationConstants.TASKS_PAGE_GREATER_OR_EQUAL_1)
+            @Max(value = 100, message = ValidationConstants.TASKS_PER_PAGE_LESS_OR_EQUAL_100)
+            @Min(value = 1, message = ValidationConstants.TASKS_PER_PAGE_GREATER_OR_EQUAL_1)
+            Integer perPage) {
+        return ResponseEntity.ok(new CustomSuccessResponse<>(sectionService.getSectionsWithTrainer(page, perPage)));
+    }
+
     @GetMapping("/find")
     public ResponseEntity<CustomSuccessResponse<PagenableResponse<GetSectionDtoResponse>>> findSections(
             @RequestParam(required = false)

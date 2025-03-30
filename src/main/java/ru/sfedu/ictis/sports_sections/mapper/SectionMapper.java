@@ -11,6 +11,7 @@ import ru.sfedu.ictis.sports_sections.entity.SectionEntity;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface SectionMapper {
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "location", ignore = true)
     SectionEntity toSectionEntity(SectionDtoRequest sectionDtoRequest);
 
     GetSectionDtoResponse toGetSectionDtoResponse(SectionEntity sectionEntity);

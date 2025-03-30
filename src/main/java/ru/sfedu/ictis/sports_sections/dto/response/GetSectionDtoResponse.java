@@ -18,11 +18,9 @@ public class GetSectionDtoResponse {
 
     private String description;
 
-    private String location;
+    private LocationResponseDto location;
 
-    private Long trainerId;
-
-    private String trainerName;
+    private Set<UserResponse> trainers;
 
     private Set<CategoryDtoResponse> categories;
 }

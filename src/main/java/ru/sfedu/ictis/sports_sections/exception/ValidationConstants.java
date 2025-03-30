@@ -116,7 +116,7 @@ public interface ValidationConstants {
 
     String SECTION_LOCATION_NULL = "The section location must not be null or empty.";
 
-    String SECTION_LOCATION_SIZE_NOT_VALID = "The section location must be between 1 and 100 characters.";
+    String SECTION_LOCATION_SIZE_NOT_VALID = "The section location must be between 3 and 255 characters.";
 
     String SECTION_TRAINER_ID_NULL = "The trainer ID must not be null.";
 
@@ -166,6 +166,12 @@ public interface ValidationConstants {
     String REVIEW_NOT_FOUND = "This review does not exist";
 
     String REVIEW_EXISTS = "This is review exist";
+
+    String LOCATION_EXISTS = "This is location exist";
+
+    String LOCATION_NOT_EXISTS = "This location does not exist";
+
+    String NO_RIGHT = "No rights for this action";
 
     private void doNothingMethod() {
 
