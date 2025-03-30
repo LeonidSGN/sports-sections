@@ -14,7 +14,7 @@ import ru.sfedu.ictis.sports_sections.exception.ValidationConstants;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterUserDtoRequest {
-    @NotBlank(message = ValidationConstants.USER_AVATAR_NOT_NULL)
+    @NotBlank(message = ValidationConstants.AVATAR_NOT_NULL)
     private String avatar;
 
     @Email(message = ValidationConstants.USER_EMAIL_NOT_VALID)

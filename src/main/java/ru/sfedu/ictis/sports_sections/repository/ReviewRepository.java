@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
-    Optional<ReviewEntity> findByUserIdAndSessionId(Long userId, Long sessionId);
+    Optional<ReviewEntity> findByUserIdAndSectionId(Long userId, Long sectionId);
 
-    List<ReviewEntity> findBySession_Section_Id(Long sectionId);
+    List<ReviewEntity> findBySectionId(Long sectionId);
 
-    boolean existsByUserIdAndSessionId(Long userId, Long sessionId);
+    boolean existsByUserIdAndSectionId(Long userId, Long sectionId);
 }

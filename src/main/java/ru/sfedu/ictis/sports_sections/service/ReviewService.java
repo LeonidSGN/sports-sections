@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReviewService {
     ReviewDtoResponse addReview(ReviewDtoRequest request);
 
-    ReviewDtoResponse getReviewUserBySession(Long sessionId);
+    ReviewDtoResponse getReviewUserBySection(Long sectionId);
 
     void deleteReview(Long id);
 

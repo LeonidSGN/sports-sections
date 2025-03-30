@@ -5,6 +5,8 @@ import ru.sfedu.ictis.sports_sections.dto.request.EnrollStatusDtoRequest;
 import ru.sfedu.ictis.sports_sections.dto.response.GetEnrollmentsDtoResponse;
 import ru.sfedu.ictis.sports_sections.dto.response.PagenableResponse;
 
+import java.util.List;
+
 public interface EnrollmentService {
     Long createEnroll(EnrollDtoRequest enrollDtoRequest);
 
@@ -21,4 +23,6 @@ public interface EnrollmentService {
     PagenableResponse<GetEnrollmentsDtoResponse> getEnrollmentsForSection(Long sectionId,
                                                                           Integer page,
                                                                           Integer perPage);
+
+    List<GetEnrollmentsDtoResponse> getListEnrollmentsForUserById(Long userId);
 }

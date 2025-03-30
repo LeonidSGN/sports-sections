@@ -24,9 +24,9 @@ public interface ValidationConstants {
 
     String USER_PASSWORD_NOT_VALID = "user password should be more than 6 symbols";
 
-    String USER_AVATAR_NOT_NULL = "user avatar mustn't be null";
+    String AVATAR_NOT_NULL = "Avatar mustn't be null";
 
-    String USER_AVATAR_NOT_VALID = "user avatar should be between 3 and 130";
+    String AVATAR_NOT_VALID = "Avatar should be between 3 and 130";
 
     String MAX_UPLOAD_SIZE_EXCEEDED = "Maximum upload size exceeded";
 
@@ -172,6 +172,12 @@ public interface ValidationConstants {
     String LOCATION_NOT_EXISTS = "This location does not exist";
 
     String NO_RIGHT = "No rights for this action";
+
+    String TIME_NULL = "Time should not be NULL";
+
+    String DAY_NULL = "Day of week must not be NULL";
+
+    String TRAINER_NOT_ASSIGNED_TO_SECTION = "The trainer does not lead this section.";
 
     private void doNothingMethod() {
 

@@ -8,9 +8,6 @@ import ru.sfedu.ictis.sports_sections.entity.SessionEntity;
 import java.util.List;
 
 public interface SessionRepository extends JpaRepository<SessionEntity, Long> {
-    @Query("SELECT COUNT(s) FROM SessionEntity s WHERE s.trainer.id = :trainerId AND s.endDate < CURRENT_TIMESTAMP")
-    long countPastSessionsByTrainer(@Param("trainerId") Long trainerId);
-
     @Query("""
         SELECT s FROM SessionEntity s
         JOIN s.section sec
@@ -20,4 +17,8 @@ public interface SessionRepository extends JpaRepository<SessionEntity, Long> {
     List<SessionEntity> findUserSessions(@Param("userId") Long userId);
 
     List<SessionEntity> findByTrainerId(Long trainerId);
+
+    @Query("SELECT s FROM SessionEntity s " +
+            "WHERE (s.section.id, s.trainer.id) IN (SELECT e.section.id, e.trainer.id FROM EnrollmentEntity e WHERE e.user.id = :userId)")
+    List<SessionEntity> findByUserEnrollments(@Param("userId") Long userId);
 }

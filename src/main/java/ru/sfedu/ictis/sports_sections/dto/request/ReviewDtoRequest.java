@@ -18,7 +18,7 @@ import ru.sfedu.ictis.sports_sections.exception.ValidationConstants;
 @AllArgsConstructor
 public class ReviewDtoRequest {
     @Positive
-    private Long sessionId;
+    private Long sectionId;
 
     @NotNull(message = ValidationConstants.REVIEWS_RATING_NOT_VALID)
     @Min(value = 1, message = ValidationConstants.REVIEWS_RATING_NOT_VALID)

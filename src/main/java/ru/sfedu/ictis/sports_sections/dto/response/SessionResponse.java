@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -14,11 +15,11 @@ import java.time.LocalDateTime;
 public class SessionResponse {
     private Long id;
 
-    private String status;
+    private LocalTime startTime;
 
-    private LocalDateTime startDate;
+    private LocalTime endTime;
 
-    private LocalDateTime endDate;
+    private DayOfWeek day;
 
     private Long sectionId;
 

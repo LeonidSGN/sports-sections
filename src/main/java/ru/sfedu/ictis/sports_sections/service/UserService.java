@@ -1,5 +1,6 @@
 package ru.sfedu.ictis.sports_sections.service;
 
+import ru.sfedu.ictis.sports_sections.dto.request.ChangeRoleRequest;
 import ru.sfedu.ictis.sports_sections.dto.request.PutUserDtoRequest;
 import ru.sfedu.ictis.sports_sections.dto.response.GetSectionDtoResponse;
 import ru.sfedu.ictis.sports_sections.dto.response.UserResponse;
@@ -22,4 +23,6 @@ public interface UserService {
     GetSectionDtoResponse assignTrainerToSection(Long sectionId);
 
     String getCurrentUserEmail();
+
+    UserResponse changeUserRole(Long id, ChangeRoleRequest role);
 }

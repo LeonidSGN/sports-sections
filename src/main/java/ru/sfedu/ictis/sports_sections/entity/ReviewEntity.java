@@ -42,6 +42,6 @@ public class ReviewEntity {
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "session_id", nullable = false)
-    private SessionEntity session;
+    @JoinColumn(name = "section_id", nullable = false)
+    private SectionEntity section;
 }

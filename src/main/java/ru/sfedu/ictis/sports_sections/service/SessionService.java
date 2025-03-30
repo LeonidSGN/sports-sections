@@ -11,8 +11,6 @@ public interface SessionService {
 
     List<SessionResponse> getAllSessions();
 
-    Long getCountAllSessionsForTrainer(Long id);
-
     List<SessionResponse> getTrainerSchedule(Long trainerId);
 
     List<SessionResponse> getUserSchedule(Long userId);

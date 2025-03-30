@@ -16,6 +16,9 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 public class SectionDtoRequest {
+    @NotBlank(message = ValidationConstants.AVATAR_NOT_NULL)
+    private String avatar;
+
     @NotBlank(message = ValidationConstants.SECTION_NAME_NULL)
     @Size(min = 1, max = 100, message = ValidationConstants.SECTION_NAME_SIZE_NOT_VALID)
     private String name;

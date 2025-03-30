@@ -16,12 +16,14 @@ public interface EnrollmentMapper {
 
     @Mapping(target = "user", source = "userEntity")
     @Mapping(target = "section", source = "sectionEntity")
+    @Mapping(target = "trainer", source = "trainer")
     @Mapping(target = "status", source = "enrollDtoRequest.status")
     @Mapping(target = "id", ignore = true)
     EnrollmentEntity toEnrollmentEntity(
             EnrollDtoRequest enrollDtoRequest,
             UserEntity userEntity,
-            SectionEntity sectionEntity
+            SectionEntity sectionEntity,
+            UserEntity trainer
     );
 
     @Mapping(target = "status", source = "status")

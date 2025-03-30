@@ -44,14 +44,6 @@ public class SessionController {
         return ResponseEntity.ok(new CustomSuccessResponse<>(sessionService.getAllSessions()));
     }
 
-    @GetMapping("/trainer/count/{id}")
-    public ResponseEntity<CustomSuccessResponse<Long>> getCountAllSessionsForTrainer(
-            @PathVariable
-            @Positive
-            Long id) {
-        return ResponseEntity.ok(new CustomSuccessResponse<>(sessionService.getCountAllSessionsForTrainer(id)));
-    }
-
     @GetMapping("/trainer/{id}")
     public ResponseEntity<CustomSuccessResponse<List<SessionResponse>>> getTrainerSchedule(
             @PathVariable
